@@ -28,6 +28,7 @@ return [
         'التعلم المستمر والابتكار',
         'احترام الوقت والاحترافية',
     ],
+    'level' => 'المستوى',
 
     'stats_teachers' => 'مدرس',
     'payLater' => 'الدفع لاحقا',
@@ -378,7 +379,7 @@ return [
     'assistant_retry' => 'تعذر الاتصال، حاول مرة أخرى.',
     'search_courses' => 'بحث عن الدورات',
     'course_name' => 'اسم الدورة',
-    'level' => 'المستوى',
+
     'no_students_found' => 'لا يوجد طلاب',
     'categories' => 'التصنيفات',
     'my_course' => 'دورتي',
@@ -440,11 +441,10 @@ return [
     'no_lessons_available' => 'لا توجد دروس متاحة بعد',
     'last_updated' => 'آخر تحديث',
     'created_by' => 'تم الإنشاء بواسطة',
-    'students' => 'طلاب',
+
     'reviews' => 'تقييمات',
     'curriculum' => 'المنهج',
-    'overview' => 'نظرة عامة',
-    'no_schedule' => 'لا يوجد جدول',
+
     'booking' => 'الحجز',
     'book_now' => 'حجز الآن',
     'select_booking_time_first' => 'يجب تحديد وقت الحجز أولاً',
@@ -458,9 +458,9 @@ return [
     'payment_summary' => 'ملخص الدفع',
     'total_amount' => 'المبلغ الإجمالي',
     'billing_information' => 'معلومات الفواتير',
-    'address' => 'العنوان',
+
     'enter_address' => 'أدخل عنوانك',
-    'phone' => 'رقم الهاتف',
+
     'enter_phone' => 'أدخل رقم هاتفك',
     'city' => 'المدينة',
     'enter_city' => 'أدخل مدينتك',
@@ -475,7 +475,7 @@ return [
     'gate_hero_title' => 'بوابة الدراسات المهنية والتدريب',
     'gate_hero_description' => 'نهدف إلى إعداد أفضل الكفاءات القيادية والمهنية، حيث نسعى لتطوير مهاراتك وتعزيز قدراتك من خلال برامج تدريبية متخصصة.',
     'explore_programs' => 'استكشف البرامج',
-    'learn_more' => 'اعرف المزيد',
+
     'programs' => 'البرامج',
     'instructors' => 'المدربين',
     'success_rate' => 'معدل النجاح',
@@ -496,7 +496,7 @@ return [
     'professional_doctorate_desc' => 'بحث وممارسة متقدمة لتعزيز المعرفة والمهارات.',
     'professional_fellowship' => 'الزمالة المهنية',
     'professional_fellowship_desc' => 'تميز عالي للخبراء في مجالاتهم.',
-    'most_enrolled_programs' => 'أكثر البرامج تسجيلاً',
+
     'view_all_diplomas' => 'عرض جميع الدبلومات'
 ];
 

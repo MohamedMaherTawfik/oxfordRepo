@@ -2,14 +2,14 @@
     {{-- Success Message --}}
     @if (session('success'))
         <div class="mb-4 p-3 rounded-lg bg-green-100 border border-green-400 text-green-700">
-            {{ session('success') }}
+            {{ __('main.success_message', ['message' => session('success')]) }}
         </div>
     @endif
 
     {{-- Error Message --}}
     @if (session('error'))
         <div class="mb-4 p-3 rounded-lg bg-red-100 border border-red-400 text-red-700">
-            {{ session('error') }}
+            {{ __('main.error_message', ['message' => session('error')]) }}
         </div>
     @endif
 
@@ -28,11 +28,12 @@
         <div class="w-full max-w-md bg-white rounded-xl shadow-md p-8">
             <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-6">
                 @csrf
-                <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create New User</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">{{ __('main.create_user_title') }}</h2>
+
                 <!-- Name -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <input type="text" name="name" placeholder="Full Name"
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('main.full_name') }}</label>
+                    <input type="text" name="name" placeholder="{{ __('main.full_name_placeholder') }}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
                     @error('name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -41,8 +42,8 @@
 
                 <!-- Email -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" name="email" placeholder="you@example.com"
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('main.email') }}</label>
+                    <input type="email" name="email" placeholder="{{ __('main.email_placeholder') }}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
                     @error('email')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -51,8 +52,8 @@
 
                 <!-- Password -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input type="password" name="password" placeholder="Password"
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('main.password') }}</label>
+                    <input type="password" name="password" placeholder="{{ __('main.password_placeholder') }}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
                     @error('password')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -61,13 +62,13 @@
 
                 <!-- Role -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('main.role') }}</label>
                     <select name="role"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        <option value="">Select Role</option>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                        <option value="teacher">teacher</option>
+                        <option value="">{{ __('main.select_role') }}</option>
+                        <option value="user">{{ __('main.user') }}</option>
+                        <option value="admin">{{ __('main.admin') }}</option>
+                        <option value="teacher">{{ __('main.teacher') }}</option>
                     </select>
                     @error('role')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -78,14 +79,10 @@
                 <div class="text-center">
                     <button type="submit"
                         class="w-50 py-2 px-4 rounded-md font-semibold text-white bg-[#73131DCE] hover:bg-[#73131d] transition">
-                        Create User
+                        {{ __('main.create_user_button') }}
                     </button>
                 </div>
             </form>
         </div>
     </div>
-
-
-
-
 </x-panel>

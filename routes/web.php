@@ -91,13 +91,14 @@ Route::group([], function () {
 Route::group([
     'middleware' => ['auth', CheckAdmin::class],
 ], function () {
-    // Staff Management Routes (Only for admin)
-    Route::group(['middleware' => function ($request, $next) {
-        if (auth()->user()->role !== 'admin') {
-            abort(403);
+    Route::group([
+        'middleware' => function ($request, $next) {
+            if (auth()->user()->role !== 'admin') {
+                abort(403);
+            }
+            return $next($request);
         }
-        return $next($request);
-    }], function () {
+    ], function () {
         Route::resource('admin/staff', \App\Http\Controllers\admin\StaffController::class)->names([
             'index' => 'admin.staff.index',
             'create' => 'admin.staff.create',

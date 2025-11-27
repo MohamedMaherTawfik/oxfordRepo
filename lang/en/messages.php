@@ -452,11 +452,10 @@ return [
     'no_lessons_available' => 'No lessons available yet',
     'last_updated' => 'Last updated',
     'created_by' => 'Created by',
-    'students' => 'students',
+
     'reviews' => 'reviews',
     'curriculum' => 'Curriculum',
-    'overview' => 'Overview',
-    'no_schedule' => 'No schedule',
+
     'book_now' => 'Book Now',
     'select_booking_time_first' => 'Please select booking time first',
     'payment_success' => 'Payment Successful!',
@@ -469,9 +468,9 @@ return [
     'payment_summary' => 'Payment Summary',
     'total_amount' => 'Total Amount',
     'billing_information' => 'Billing Information',
-    'address' => 'Address',
+
     'enter_address' => 'Enter your address',
-    'phone' => 'Phone Number',
+
     'enter_phone' => 'Enter your phone number',
     'city' => 'City',
     'enter_city' => 'Enter your city',
@@ -486,7 +485,7 @@ return [
     'gate_hero_title' => 'Professional Studies Training Portal',
     'gate_hero_description' => 'We aim to prepare the best leadership and professional competencies, as we strive to develop your skills and enhance your capabilities through specialized training programs.',
     'explore_programs' => 'Explore Programs',
-    'learn_more' => 'Learn More',
+
     'programs' => 'Programs',
     'instructors' => 'Instructors',
     'success_rate' => 'Success Rate',
