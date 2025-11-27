@@ -9,7 +9,7 @@ $totalUsers = User::where('role', 'user')->count();
 $totalTeachers = User::where('role', 'teacher')->count();
 $totalStaff = User::where('role', 'staff')->count();
 $totalCourses = Courses::count();
-$totalDiplomas = diplomas::count();
+$totalDiplomas = Diplomas::count();
 $pendings = applyTeacher::where('status', 'pending')->count();
 $accepted = applyTeacher::where('status', 'accepted')->count();
 $rejected = applyTeacher::where('status', 'rejected')->count();
@@ -31,7 +31,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <!-- Total Students Card -->
-        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+        <div
+            class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                     <i class="fas fa-users text-2xl"></i>
@@ -46,7 +47,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
         </div>
 
         <!-- Total Courses Card -->
-        <div class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+        <div
+            class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                     <i class="fas fa-book-open text-2xl"></i>
@@ -61,7 +63,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
         </div>
 
         <!-- Total Teachers Card -->
-        <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+        <div
+            class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                     <i class="fas fa-chalkboard-teacher text-2xl"></i>
@@ -76,7 +79,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
         </div>
 
         <!-- Pending Applications Card -->
-        <div class="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+        <div
+            class="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                     <i class="fas fa-hourglass-half text-2xl"></i>
@@ -94,18 +98,19 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
     <!-- Secondary Stats -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Staff Card -->
-        @if(auth()->user()->role === 'admin')
-        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-[#79131d] hover:shadow-xl transition-shadow">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-gray-500 text-sm font-medium mb-1">{{ __('main.staff') }}</p>
-                    <h3 class="text-3xl font-bold text-gray-900">{{ $totalStaff }}</h3>
-                </div>
-                <div class="bg-[#79131d]/10 rounded-full p-4">
-                    <i class="fas fa-user-tie text-[#79131d] text-2xl"></i>
+        @if (auth()->user()->role === 'admin')
+            <div
+                class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-[#79131d] hover:shadow-xl transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium mb-1">{{ __('main.staff') }}</p>
+                        <h3 class="text-3xl font-bold text-gray-900">{{ $totalStaff }}</h3>
+                    </div>
+                    <div class="bg-[#79131d]/10 rounded-full p-4">
+                        <i class="fas fa-user-tie text-[#79131d] text-2xl"></i>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
 
         <!-- Diplomas Card -->
@@ -130,11 +135,13 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
             <div class="space-y-2">
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-gray-600">{{ __('main.accepted') }}</span>
-                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">{{ $accepted }}</span>
+                    <span
+                        class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">{{ $accepted }}</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span class="text-sm text-gray-600">{{ __('main.rejected') }}</span>
-                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">{{ $rejected }}</span>
+                    <span
+                        class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">{{ $rejected }}</span>
                 </div>
             </div>
         </div>
@@ -159,10 +166,14 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase">{{ __('main.name') }}</th>
-                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase">{{ __('main.email') }}</th>
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase">{{ __('main.role') }}</th>
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase">{{ __('main.action') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase">
+                                {{ __('main.name') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase">
+                                {{ __('main.email') }}</th>
+                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase">
+                                {{ __('main.role') }}</th>
+                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase">
+                                {{ __('main.action') }}</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -177,12 +188,12 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
                                 </td>
                                 <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-600">{{ $user->email }}</td>
                                 <td class="px-4 py-3 whitespace-nowrap text-center">
-                                    <span class="px-2 py-1 text-xs font-semibold rounded-full
-                                        @if($user->role === 'admin') bg-red-100 text-red-800
+                                    <span
+                                        class="px-2 py-1 text-xs font-semibold rounded-full
+                                        @if ($user->role === 'admin') bg-red-100 text-red-800
                                         @elseif($user->role === 'teacher') bg-blue-100 text-blue-800
                                         @elseif($user->role === 'staff') bg-purple-100 text-purple-800
-                                        @else bg-gray-100 text-gray-800
-                                        @endif">
+                                        @else bg-gray-100 text-gray-800 @endif">
                                         {{ $user->role }}
                                     </span>
                                 </td>
@@ -191,7 +202,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
                                         class="text-[#79131d] hover:text-[#5a0f16] mr-3">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" class="inline">
+                                    <form action="{{ route('admin.users.delete', $user->id) }}" method="POST"
+                                        class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-600 hover:text-red-800"
@@ -222,7 +234,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
                         <i class="fas fa-book-open mr-3"></i>
                         {{ __('main.recent_courses') }}
                     </h3>
-                    <a href="{{ route('admin.courses.all') }}" class="text-white hover:text-gray-100 text-sm font-medium">
+                    <a href="{{ route('admin.courses.all') }}"
+                        class="text-white hover:text-gray-100 text-sm font-medium">
                         {{ __('main.view_all') }} <i class="fas fa-arrow-left mr-1"></i>
                     </a>
                 </div>
@@ -230,11 +243,11 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
             <div class="p-4">
                 <div class="space-y-3">
                     @forelse($recentCourses as $course)
-                        <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100">
+                        <div
+                            class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100">
                             <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
-                                <img src="{{ $course->cover_photo_url ?? asset('images/coursePlace.png') }}" 
-                                     alt="{{ $course->title }}" 
-                                     class="w-full h-full object-cover">
+                                <img src="{{ $course->cover_photo_url ?? asset('images/coursePlace.png') }}"
+                                    alt="{{ $course->title }}" class="w-full h-full object-cover">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h4 class="text-sm font-semibold text-gray-900 truncate">{{ $course->title }}</h4>
@@ -247,8 +260,8 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
                                     {{ $course->created_at->diffForHumans() }}
                                 </p>
                             </div>
-                            <a href="{{ route('admin.courses.show', $course->slug) }}" 
-                               class="text-[#79131d] hover:text-[#5a0f16]">
+                            <a href="{{ route('admin.courses.show', $course->slug) }}"
+                                class="text-[#79131d] hover:text-[#5a0f16]">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>
@@ -270,27 +283,27 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
             {{ __('main.quick_actions') }}
         </h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="{{ route('admin.users.create') }}" 
-               class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all transform hover:scale-105">
+            <a href="{{ route('admin.users.create') }}"
+                class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all transform hover:scale-105">
                 <i class="fas fa-user-plus text-2xl text-blue-600 mb-2"></i>
                 <span class="text-sm font-semibold text-blue-900">{{ __('main.add_user') }}</span>
             </a>
-            <a href="{{ route('admin.courses.create') }}" 
-               class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 transition-all transform hover:scale-105">
+            <a href="{{ route('admin.courses.create') }}"
+                class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 transition-all transform hover:scale-105">
                 <i class="fas fa-plus-circle text-2xl text-green-600 mb-2"></i>
                 <span class="text-sm font-semibold text-green-900">{{ __('main.add_course') }}</span>
             </a>
-            <a href="{{ route('admin.applies') }}" 
-               class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 hover:from-orange-100 hover:to-orange-200 transition-all transform hover:scale-105">
+            <a href="{{ route('admin.applies') }}"
+                class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 hover:from-orange-100 hover:to-orange-200 transition-all transform hover:scale-105">
                 <i class="fas fa-clipboard-list text-2xl text-orange-600 mb-2"></i>
                 <span class="text-sm font-semibold text-orange-900">{{ __('main.applications') }}</span>
             </a>
-            @if(auth()->user()->role === 'admin')
-            <a href="{{ route('admin.staff.create') }}" 
-               class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 transition-all transform hover:scale-105">
-                <i class="fas fa-user-tie text-2xl text-purple-600 mb-2"></i>
-                <span class="text-sm font-semibold text-purple-900">{{ __('main.add_staff') }}</span>
-            </a>
+            @if (auth()->user()->role === 'admin')
+                <a href="{{ route('admin.staff.create') }}"
+                    class="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 transition-all transform hover:scale-105">
+                    <i class="fas fa-user-tie text-2xl text-purple-600 mb-2"></i>
+                    <span class="text-sm font-semibold text-purple-900">{{ __('main.add_staff') }}</span>
+                </a>
             @endif
         </div>
     </div>
@@ -302,12 +315,13 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
             opacity: 0;
             transform: translateY(20px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
-    
+
     .animate-fade-in {
         animation: fadeInUp 0.5s ease-out;
     }
