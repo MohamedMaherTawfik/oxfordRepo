@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\admin\lessonDiplomaController;
+use App\Http\Controllers\api\admin\timesController;
 use App\Http\Controllers\api\auth\AuthController;
 use App\Http\Controllers\api\diploma\DiplomacategoreyController;
 use App\Http\Controllers\api\diploma\DiplomasApiController;
@@ -179,6 +180,19 @@ Route::group([
             Route::post('/{id}/create', 'create')->middleware('jwt.auth');
             Route::post('/update/{id}', 'update')->middleware('jwt.auth');
             Route::delete('/delete/{id}', 'destroy')->middleware('jwt.auth');
+        }
+    );
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'times',
+], function () {
+    Route::controller(timesController::class)->group(
+        function () {
+            Route::get('/all/{id}', 'index')->middleware('jwt.auth');
+            Route::post('/{id}/create', 'create')->middleware('jwt.auth');
         }
     );
 });
