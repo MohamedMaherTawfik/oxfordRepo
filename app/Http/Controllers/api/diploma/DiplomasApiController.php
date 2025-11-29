@@ -40,7 +40,7 @@ class DiplomasApiController extends Controller
     public function mycourses()
     {
         $user = currentUser();
-        $courses = Diplomas::where('user_id', $user->id)->paginate(5);
+        $courses = Diplomas::where('user_id', $user->id)->get();
         try {
             if (count($courses) == 0) {
                 return $this->success($courses, 'No courses found for this user');
