@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api\student;
 use App\Http\Controllers\Controller;
 use App\Interfaces\CourseInterface;
 use App\Interfaces\EnrollmentInterface;
+use App\Models\Diplomas;
+use App\Models\Enrollments;
 
 class enrollmentController extends Controller
 {
@@ -34,6 +36,34 @@ class enrollmentController extends Controller
     {
         $course = $this->coursesRepository->getCourse(request('courseId'));
         $enrollment = $this->enrollmentRepository->store($course->id, $course->price);
+        try {
+            if (!$enrollment) {
+                return $this->notFound(__('messages.Error_show_Message'));
+            }
+            return $this->success($enrollment, __('messages.show_Message'));
+        } catch (\Throwable $th) {
+            return $this->serverError($th);
+        }
+    }
+
+    public function allDiplomas()
+    {
+        $diploma = Enrollments::where('diplomas_id', request('id'))->get();
+        if (count($diploma) == 0) {
+            return $this->noContent();
+        }
+        return $this->success($diploma, 'Enrollments fetched successfully');
+    }
+
+    public function enrollDiploma()
+    {
+        $course = Diplomas::find(request('id'));
+        $enrollment = Enrollments::create([
+            'user_id' => auth()->user()->id,
+            'diplomas_id' => $course->id,
+            'price' => $course->admin_price ?? $course->price,
+            'enrolled' => 'yes',
+        ]);
         try {
             if (!$enrollment) {
                 return $this->notFound(__('messages.Error_show_Message'));

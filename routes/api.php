@@ -109,7 +109,9 @@ Route::group([
     Route::controller(enrollmentController::class)->group(
         function () {
             Route::get('/all/{courseId}', 'allEnrollments');
+            Route::get('/diploma/{id}', 'allDiplomas');
             Route::post('/enroll/{courseId}', 'enrollCourse')->middleware('jwt.auth');
+            Route::post('/diploma/{id}', 'enrollDiploma')->middleware('jwt.auth');
         }
     );
 });
