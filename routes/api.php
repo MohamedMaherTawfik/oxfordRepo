@@ -129,8 +129,8 @@ Route::group([
             Route::get('/detail/{id}', 'courseDetail')->middleware(authcheck::class);
             Route::post('/create', 'createCourse')->middleware('jwt.auth');
             Route::get('/search', 'searchCourses');
-            Route::post('/update/{id}', 'updateCourse')->middleware(courseMiddleware::class, 'jwt.auth');
-            Route::delete('/delete/{id}', 'deleteCourse')->middleware(courseMiddleware::class, 'jwt.auth');
+            Route::post('/update/{id}', 'updateCourse')->middleware('jwt.auth');
+            Route::delete('/delete/{id}', 'deleteCourse')->middleware('jwt.auth');
             Route::get('/mycourses', 'mycourses')->middleware('jwt.auth');
             Route::get('/enrolled', 'EnrolledCourses')->middleware('jwt.auth');
             Route::post('/send-notification', 'sendNotification')->middleware('jwt.auth');
