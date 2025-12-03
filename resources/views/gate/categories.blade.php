@@ -4,7 +4,8 @@
         <!-- عرض الدبلومات الخاصة بالكاتيجوري -->
         @if ($categories && $categories->diplomas->count() > 0)
             <div class="mt-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ __('messages.diplomas_in_category') }} {{ $categories->name ?? __('messages.categories') }}</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ __('messages.diplomas_in_category') }}
+                    {{ $categories->name ?? __('messages.categories') }}</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($categories->diplomas as $diploma)

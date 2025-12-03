@@ -15,7 +15,7 @@
         body {
             font-family: 'Cairo', sans-serif;
         }
-        
+
         /* RTL Support */
         [dir="rtl"] {
             direction: rtl;
@@ -108,7 +108,9 @@
 
                             <div class="pt-4 flex items-center justify-between">
                                 <span class="text-lg font-bold text-[#79131d]">
-                                    {{ $course->price }} <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="SAR" class="inline-block sar-symbol">
+                                    {{ $course->price }} <img
+                                        src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                                        alt="SAR" class="inline-block sar-symbol">
                                 </span>
                                 <a href="{{ route('course.show', $course->slug) }}"
                                     class="px-4 py-2 bg-[#79131DD2] text-[#e4ce96] text-sm font-medium rounded-md hover:bg-[#79131d] transition">

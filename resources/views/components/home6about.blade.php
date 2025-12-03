@@ -1,9 +1,10 @@
 @php
     use App\Models\Courses;
-    $course_4 = Courses::inRandomOrder()->take(4)->get()->reverse();
-    $newest = Courses::orderBy('created_at', 'desc')->take(4)->get();
+    $course_4 = Courses::inRandomOrder()->take(4)->get()->reverse()->filter(fn($c) => $c->admin_price != 0);
+    $newest = Courses::orderBy('created_at', 'desc')->take(4)->get()->filter(fn($c) => $c->admin_price != 0);
     $isArabic = app()->getLocale() === 'ar';
 @endphp
+
 
 <!-- قسم الدورات الأكثر شهرة -->
 <section class="py-16 bg-gray-50" dir="{{ $isArabic ? 'rtl' : 'ltr' }}">

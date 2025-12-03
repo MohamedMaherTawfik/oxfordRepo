@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\admin\lessonDiplomaController;
+use App\Http\Controllers\api\admin\EnablePaymentController;
 use App\Http\Controllers\api\admin\timesController;
 use App\Http\Controllers\api\auth\AuthController;
 use App\Http\Controllers\api\diploma\DiplomacategoreyController;
@@ -198,3 +199,5 @@ Route::group([
         }
     );
 });
+
+Route::get('/enable/payment', [EnablePaymentController::class, 'index']);

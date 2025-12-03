@@ -6,6 +6,7 @@ use App\Http\Controllers\api\student\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Models\CourseSchedule;
 use App\Models\times;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class timesController extends Controller
@@ -13,8 +14,10 @@ class timesController extends Controller
     use apiResponse;
     public function index()
     {
-        $courseSchedules = CourseSchedule::with('times')->where('id', request('id'))->first();
-        return $this->success($courseSchedules, 'Successfully Fetched');
+        $courseSchedules = CourseSchedule::where('id', request('id'))->first();
+        $times = times::where('course_schedule_id', $courseSchedules->id)->pluck('user_id');
+        $users = User::whereIn('id', $times)->get();
+        return $this->success($users, 'Successfully Fetched');
     }
 
     public function create()

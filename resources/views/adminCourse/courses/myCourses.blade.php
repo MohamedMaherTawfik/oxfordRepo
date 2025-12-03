@@ -40,13 +40,27 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-4 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">الصورة</th>
-                            <th class="px-6 py-4 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">الدورة</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">التصنيف</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">المدة</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">السعر</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">سعر الأدمن</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">الإجراءات</th>
+                            <th
+                                class="px-6 py-4 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                الصورة</th>
+                            <th
+                                class="px-6 py-4 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                الدورة</th>
+                            <th
+                                class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                التصنيف</th>
+                            <th
+                                class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                المدة</th>
+                            <th
+                                class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                السعر</th>
+                            <th
+                                class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                سعر الأدمن</th>
+                            <th
+                                class="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                الإجراءات</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -58,18 +72,19 @@
                                         <img src="{{ $course->cover_photo && file_exists(public_path('storage/' . $course->cover_photo))
                                             ? asset('storage/' . $course->cover_photo)
                                             : asset('images/coursePlace.png') }}"
-                                            alt="{{ $course->title }}" 
-                                            class="w-full h-full object-cover">
+                                            alt="{{ $course->title }}" class="w-full h-full object-cover">
                                     </div>
                                 </td>
-                                
+
                                 <!-- Course Info -->
                                 <td class="px-6 py-4">
                                     <div class="flex flex-col">
                                         <h3 class="text-sm font-bold text-gray-900 mb-1">{{ $course->title }}</h3>
-                                        <p class="text-xs text-gray-500 mb-2 line-clamp-2">{{ Str::limit($course->description, 60) }}</p>
+                                        <p class="text-xs text-gray-500 mb-2 line-clamp-2">
+                                            {{ Str::limit($course->description, 60) }}</p>
                                         <div class="flex items-center gap-2 flex-wrap">
-                                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-[#79131d]/10 text-[#79131d]">
+                                            <span
+                                                class="px-2 py-1 text-xs font-semibold rounded-full bg-[#79131d]/10 text-[#79131d]">
                                                 {{ ucfirst($course->level ?? 'Beginner') }}
                                             </span>
                                             <span class="text-xs text-gray-500">
@@ -79,14 +94,15 @@
                                         </div>
                                     </div>
                                 </td>
-                                
+
                                 <!-- Category -->
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
-                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    <span
+                                        class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                         {{ $course->category->name ?? 'General' }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- Duration -->
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     <div class="flex items-center justify-center text-sm text-gray-600">
@@ -94,33 +110,33 @@
                                         <span>{{ $course->duration ?? 0 }} {{ __('messages.hours') }}</span>
                                     </div>
                                 </td>
-                                
+
                                 <!-- Price -->
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     <div class="flex items-center justify-center gap-1">
-                                        <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" 
-                                             alt="SAR" 
-                                             class="sar-symbol" 
-                                             style="width: 1em; height: 1em; vertical-align: middle; display: inline-block;"
-                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                                            alt="SAR" class="sar-symbol"
+                                            style="width: 1em; height: 1em; vertical-align: middle; display: inline-block;"
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                                         <span style="display: none;">ر.س</span>
-                                        <span class="text-sm font-bold text-gray-900">{{ number_format($course->price ?? 0, 2) }}</span>
+                                        <span
+                                            class="text-sm font-bold text-gray-900">{{ number_format($course->price ?? 0, 2) }}</span>
                                     </div>
                                 </td>
-                                
+
                                 <!-- Admin Price -->
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     <div class="flex items-center justify-center gap-1">
-                                        <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" 
-                                             alt="SAR" 
-                                             class="sar-symbol" 
-                                             style="width: 1em; height: 1em; vertical-align: middle; display: inline-block;"
-                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                        <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                                            alt="SAR" class="sar-symbol"
+                                            style="width: 1em; height: 1em; vertical-align: middle; display: inline-block;"
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                                         <span style="display: none;">ر.س</span>
-                                        <span class="text-sm font-bold text-[#79131d]">{{ number_format($course->admin_price ?? 0, 2) }}</span>
+                                        <span
+                                            class="text-sm font-bold text-[#79131d]">{{ number_format($course->admin_price ?? 0, 2) }}</span>
                                     </div>
                                 </td>
-                                
+
                                 <!-- Actions -->
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     <div class="flex items-center justify-center gap-2">
@@ -129,25 +145,24 @@
                                             title="تعديل سعر الأدمن">
                                             <i class="fas fa-dollar-sign"></i>
                                         </button>
-                                        <a href="{{ route('admin.courses.show', $course->slug) }}" 
-                                           class="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
-                                           title="عرض">
+                                        <a href="{{ route('admin.courses.show', $course->slug) }}"
+                                            class="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
+                                            title="عرض">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('admin.courses.edit', $course->slug) }}" 
-                                           class="text-yellow-600 hover:text-yellow-800 p-2 rounded-lg hover:bg-yellow-50 transition-colors"
-                                           title="تعديل">
+                                        <a href="{{ route('admin.courses.edit', $course->slug) }}"
+                                            class="text-yellow-600 hover:text-yellow-800 p-2 rounded-lg hover:bg-yellow-50 transition-colors"
+                                            title="تعديل">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('admin.courses.delete', $course->id) }}" 
-                                              method="POST" 
-                                              class="inline"
-                                              onsubmit="return confirm('هل أنت متأكد من حذف هذه الدورة؟');">
+                                        <form action="{{ route('admin.courses.delete', $course->id) }}" method="POST"
+                                            class="inline"
+                                            onsubmit="return confirm('هل أنت متأكد من حذف هذه الدورة؟');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" 
-                                                    class="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50 transition-colors"
-                                                    title="حذف">
+                                            <button type="submit"
+                                                class="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50 transition-colors"
+                                                title="حذف">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -176,11 +191,11 @@
                                                 {{ __('messages.price') }}
                                             </label>
                                             <div class="relative">
-                                                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" 
-                                                         alt="SAR" 
-                                                         class="w-4 h-4 sar-symbol" 
-                                                         style="display: inline-block;">
+                                                <div
+                                                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                                                        alt="SAR" class="w-4 h-4 sar-symbol"
+                                                        style="display: inline-block;">
                                                 </div>
                                                 <input type="number" step="0.01" name="admin_price"
                                                     id="admin_price_{{ $course->id }}"
@@ -209,8 +224,8 @@
                                     <div class="flex flex-col items-center">
                                         <i class="fas fa-book-open text-6xl text-gray-300 mb-4"></i>
                                         <p class="text-gray-500 text-lg font-medium">لا توجد دورات</p>
-                                        <a href="{{ route('admin.courses.create') }}" 
-                                           class="mt-4 text-[#79131d] hover:text-[#5a0f16] font-semibold">
+                                        <a href="{{ route('admin.courses.create') }}"
+                                            class="mt-4 text-[#79131d] hover:text-[#5a0f16] font-semibold">
                                             إضافة دورة جديدة
                                         </a>
                                     </div>
@@ -252,7 +267,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        
+
         .sar-symbol {
             display: inline-block !important;
             width: 1em !important;
@@ -260,7 +275,7 @@
             vertical-align: middle !important;
             margin-left: 2px;
         }
-        
+
         .sar-symbol img {
             width: 100% !important;
             height: 100% !important;

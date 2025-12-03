@@ -14,7 +14,7 @@
         body {
             font-family: 'Cairo', sans-serif;
         }
-        
+
         /* RTL Support */
         [dir="rtl"] {
             direction: rtl;

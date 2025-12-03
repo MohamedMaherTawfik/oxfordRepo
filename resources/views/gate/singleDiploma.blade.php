@@ -11,18 +11,18 @@
         body {
             font-family: 'Cairo', sans-serif;
         }
-        
+
         /* RTL Support */
         [dir="rtl"] {
             direction: rtl;
             text-align: right;
         }
-        
+
         [dir="rtl"] .mr-2 {
             margin-right: 0 !important;
             margin-left: 0.5rem !important;
         }
-        
+
         [dir="rtl"] .ml-2 {
             margin-left: 0 !important;
             margin-right: 0.5rem !important;
@@ -117,7 +117,8 @@
                             <span
                                 class="text-3xl font-bold text-gray-900">{{ $diplomas->admin_price > 0 ? number_format($diplomas->admin_price, 2) : number_format($diplomas->price, 2) }}
 
-                                <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="SAR" class="inline-block sar-symbol-lg"></span>
+                                <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                                    alt="SAR" class="inline-block sar-symbol-lg"></span>
                         </div>
                         <form action="{{ route('pay.form.diploma', $diplomas) }}" method="GET">
                             @csrf
@@ -178,7 +179,8 @@
                             <div class="flex items-end mb-4">
                                 <span
                                     class="text-4xl font-bold text-gray-900">{{ $diplomas->admin_price > 0 ? number_format($diplomas->admin_price, 2) : number_format($diplomas->price, 2) ?? 'N/A' }}
-                                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="SAR" class="inline-block sar-symbol-lg"></span>
+                                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                                        alt="SAR" class="inline-block sar-symbol-lg"></span>
                             </div>
                             <a href="{{ route('pay.form', $diplomas) }}"
                                 class="w-full px-6 py-3 bg-[#79131DDC] hover:bg-[#79131d] text-white font-medium rounded-lg transition duration-200">

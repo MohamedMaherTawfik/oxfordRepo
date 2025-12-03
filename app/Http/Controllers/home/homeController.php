@@ -98,7 +98,7 @@ class homeController extends Controller
     public function showCourse()
     {
         $visaenables = visaenable::first();
-        
+
         // إرجاع قيم افتراضية إذا لم تكن هناك بيانات
         if (!$visaenables) {
             $visaenables = (object) [
@@ -106,14 +106,14 @@ class homeController extends Controller
                 'cash_enable' => 1,
             ];
         }
-        
+
         $course = $this->coursesRepository->getCourseBySlug(request('slug'));
-        
+
         // تحميل العلاقات مع فحص null
         if ($course) {
             $course->load(['user', 'user.courses', 'category']);
         }
-        
+
         $enrollmentUserIds = Enrollments::where('enrolled', 'yes')->where('courses_id', $course->id)->pluck('user_id');
         if (Auth::check()) {
             if ($enrollmentUserIds->contains(Auth::user()->id)) {
@@ -257,7 +257,7 @@ class homeController extends Controller
     {
         $contact = studentReviews::first();
         $footer = footer::first();
-        
+
         // إرجاع قيم افتراضية إذا لم تكن هناك بيانات
         if (!$contact) {
             $contact = (object) [
@@ -266,7 +266,7 @@ class homeController extends Controller
                 'email' => '',
             ];
         }
-        
+
         if (!$footer) {
             $footer = (object) [
                 'facebook' => null,
@@ -275,7 +275,7 @@ class homeController extends Controller
                 'instgram' => null,
             ];
         }
-        
+
         return view('home.inforamtions.contactUs', compact('contact', 'footer'));
     }
     public function storecontact(Request $request)
@@ -460,7 +460,13 @@ class homeController extends Controller
 
     public function categorey(categories $categorey)
     {
-        $categorey->load('courses');
+        $categorey->load([
+            'courses' => function ($query) {
+                $query->where('admin_price', '!=', 0);
+            }
+        ]);
+
         return view('home.categorey.show', compact('categorey'));
     }
+
 }

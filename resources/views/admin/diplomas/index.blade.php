@@ -45,7 +45,9 @@
                     <td class="py-2 px-3">{{ $diploma->duration ?? '---' }} {{ __('main.hours') }}</td>
                     <td class="py-2 px-3">{{ $diploma->start_date ?? '---' }}</td>
                     <td class="py-2 px-3">{{ $diploma->categorey->name ?? '---' }}</td>
-                    <td class="py-2 px-3">{{ $diploma->price }} <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="SAR" class="inline-block sar-symbol"></td>
+                    <td class="py-2 px-3">{{ $diploma->price }} <img
+                            src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                            alt="SAR" class="inline-block sar-symbol"></td>
 
                     <td class="py-2 px-3 flex items-center gap-2">
                         <!-- Notification Bell -->

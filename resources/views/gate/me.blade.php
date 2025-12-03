@@ -12,13 +12,13 @@
         body {
             font-family: 'Cairo', sans-serif;
         }
-        
+
         /* RTL Support */
         [dir="rtl"] {
             direction: rtl;
             text-align: right;
         }
-        
+
         .hero-pattern {
             background-image: radial-gradient(#3b82f6 0.5px, transparent 0.5px);
             background-size: 10px 10px;

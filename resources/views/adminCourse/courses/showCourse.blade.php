@@ -7,8 +7,8 @@
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                 <div class="flex-1">
                     <div class="flex items-center gap-3 mb-2">
-                        <a href="{{ route('admin.courses.all') }}" 
-                           class="text-[#79131d] hover:text-[#5a0f16] transition-colors">
+                        <a href="{{ route('admin.courses.all') }}"
+                            class="text-[#79131d] hover:text-[#5a0f16] transition-colors">
                             <i class="fas fa-arrow-right text-xl"></i>
                         </a>
                         <h1 class="text-3xl font-bold text-gray-900">{{ $course->title }}</h1>
@@ -26,10 +26,8 @@
                     </button>
 
                     <!-- Dropdown Menu -->
-                    <div x-show="dropdownOpen" 
-                         @click.away="dropdownOpen = false"
-                         x-transition
-                         class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 overflow-hidden">
+                    <div x-show="dropdownOpen" @click.away="dropdownOpen = false" x-transition
+                        class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 overflow-hidden">
                         <div class="py-2">
                             <a href="{{ route('admin.lessons.create', $course->slug) }}"
                                 class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
@@ -67,8 +65,8 @@
                                 <span>{{ __('teacher.send_notification') }}</span>
                             </button>
                             <div class="border-t border-gray-200 my-1"></div>
-                            <form method="POST" action="{{ route('admin.courses.delete', $course->id) }}" 
-                                  onsubmit="return confirm('{{ __('main.confirm_delete') }}');">
+                            <form method="POST" action="{{ route('admin.courses.delete', $course->id) }}"
+                                onsubmit="return confirm('{{ __('main.confirm_delete') }}');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
@@ -81,8 +79,7 @@
                     </div>
 
                     <!-- Notification Modal -->
-                    <div x-show="modalOpen"
-                        x-cloak
+                    <div x-show="modalOpen" x-cloak
                         class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50"
                         @click.away="modalOpen = false">
                         <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform transition-all">
@@ -122,7 +119,7 @@
                                         class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-medium">
                                         {{ __('teacher.cancel') }}
                                     </button>
-                                    <button type="submit" 
+                                    <button type="submit"
                                         class="px-6 py-3 bg-gradient-to-r from-[#79131d] to-[#5a0f16] text-white rounded-lg hover:shadow-lg transition-all font-medium">
                                         <i class="fas fa-paper-plane mr-2"></i>
                                         {{ __('teacher.send') }}
@@ -152,7 +149,8 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500">{{ __('main.category') }}</p>
-                            <p class="text-sm font-semibold text-gray-900">{{ $course->category->name ?? __('main.general') }}</p>
+                            <p class="text-sm font-semibold text-gray-900">
+                                {{ $course->category->name ?? __('main.general') }}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
@@ -161,7 +159,8 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500">{{ __('main.level') }}</p>
-                            <p class="text-sm font-semibold text-gray-900">{{ ucfirst($course->level ?? 'Beginner') }}</p>
+                            <p class="text-sm font-semibold text-gray-900">{{ ucfirst($course->level ?? 'Beginner') }}
+                            </p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
@@ -170,7 +169,8 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500">{{ __('main.start_date') }}</p>
-                            <p class="text-sm font-semibold text-gray-900">{{ \Carbon\Carbon::parse($course->start_Date)->format('d M Y') }}</p>
+                            <p class="text-sm font-semibold text-gray-900">
+                                {{ \Carbon\Carbon::parse($course->start_Date)->format('d M Y') }}</p>
                         </div>
                     </div>
                 </div>
@@ -180,7 +180,8 @@
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <!-- Total Revenue -->
-            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+            <div
+                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                         <i class="fas fa-dollar-sign text-2xl"></i>
@@ -188,16 +189,15 @@
                 </div>
                 <p class="text-blue-100 text-sm font-medium mb-2">{{ __('teacher.total_revenue') }}</p>
                 <div class="flex items-center gap-2">
-                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" 
-                         alt="SAR" 
-                         class="w-5 h-5 sar-symbol" 
-                         style="display: inline-block;">
+                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                        alt="SAR" class="w-5 h-5 sar-symbol" style="display: inline-block;">
                     <h3 class="text-3xl font-bold">{{ number_format($price, 2) }}</h3>
                 </div>
             </div>
 
             <!-- Enrollments -->
-            <div class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+            <div
+                class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                         <i class="fas fa-users text-2xl"></i>
@@ -208,7 +208,8 @@
             </div>
 
             <!-- Total Lessons -->
-            <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+            <div
+                class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                         <i class="fas fa-book-open text-2xl"></i>
@@ -219,7 +220,8 @@
             </div>
 
             <!-- Course Price -->
-            <div class="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
+            <div
+                class="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl p-6 text-white transform hover:scale-105 transition-all duration-300">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3">
                         <i class="fas fa-tag text-2xl"></i>
@@ -227,10 +229,8 @@
                 </div>
                 <p class="text-orange-100 text-sm font-medium mb-2">{{ __('main.price') }}</p>
                 <div class="flex items-center gap-2">
-                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" 
-                         alt="SAR" 
-                         class="w-5 h-5 sar-symbol" 
-                         style="display: inline-block;">
+                    <img src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg"
+                        alt="SAR" class="w-5 h-5 sar-symbol" style="display: inline-block;">
                     <h3 class="text-3xl font-bold">{{ number_format($course->price ?? 0, 2) }}</h3>
                 </div>
             </div>
@@ -252,23 +252,26 @@
                 </div>
             </div>
 
-            @if($course->lessons->count() > 0)
+            @if ($course->lessons->count() > 0)
                 <div class="p-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @foreach ($course->lessons as $lesson)
-                            <div class="group bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <div
+                                class="group bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                                 <div class="relative h-48 overflow-hidden bg-gray-200">
-                                    @if($lesson->image && file_exists(public_path('storage/' . $lesson->image)))
+                                    @if ($lesson->image && file_exists(public_path('storage/' . $lesson->image)))
                                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                                             src="{{ asset('storage/' . $lesson->image) }}"
                                             alt="{{ $lesson->title }}">
                                     @else
-                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+                                        <div
+                                            class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                                             <i class="fas fa-video text-4xl text-gray-400"></i>
                                         </div>
                                     @endif
                                     <div class="absolute top-2 right-2">
-                                        <span class="px-2 py-1 bg-black/50 text-white text-xs rounded-lg backdrop-blur-sm">
+                                        <span
+                                            class="px-2 py-1 bg-black/50 text-white text-xs rounded-lg backdrop-blur-sm">
                                             #{{ $loop->iteration }}
                                         </span>
                                     </div>
@@ -314,16 +317,16 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        
+
         .sar-symbol {
             display: inline-block !important;
             width: 1em !important;
             height: 1em !important;
             vertical-align: middle !important;
         }
-        
-        [x-cloak] { 
-            display: none !important; 
+
+        [x-cloak] {
+            display: none !important;
         }
     </style>
 </x-panel>
