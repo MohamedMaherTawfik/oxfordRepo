@@ -197,7 +197,7 @@
     </style>
 </head>
 
-<body class="bg-white text-gray-800">
+<body class="bg-white text-gray-800 min-h-screen flex flex-col">
 
     <!-- ✅ شريط التقدم -->
     <div class="progress-container fixed top-0 right-0 w-full h-1 bg-transparent z-50">
@@ -205,18 +205,19 @@
     </div>
 
     <!-- ✅ المكونات -->
-    <x-navbar />
-    <x-home-header />
-    <x-homeabout />
-    <x-home2about />
-    <x-home3about />
-    <x-home4about />
-    <x-home5about />
-    <x-home6about />
-    <x-home7about />
-    <x-home-testmionals />
+    <div class="flex-grow">
+        <x-navbar />
+        <x-home-header />
+        <x-homeabout />
+        <x-home2about />
+        <x-home3about />
+        <x-home4about />
+        <x-home5about />
+        <x-home6about />
+        <x-home7about />
+        <x-home-testmionals />
 
-    <!-- ✅ النشرة البريدية - Enhanced -->
+        <!-- ✅ النشرة البريدية - Enhanced -->
     <section class="py-20 bg-gradient-to-br from-[#79131d] via-[#5a0f16] to-[#79131d] relative overflow-hidden">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
@@ -253,6 +254,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <x-footer />
 

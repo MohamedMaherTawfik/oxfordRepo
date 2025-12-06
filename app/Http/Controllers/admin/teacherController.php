@@ -45,8 +45,21 @@ class teacherController extends Controller
     }
     public function dashboard()
     {
-        $courses = Courses::with('lessons')->where('user_id', auth()->user()->id)->get();
-        return view('teacherDashboard.index', compact('courses'));
+        $courses = Courses::with('lessons', 'enrollments')->where('user_id', auth()->user()->id)->get();
+        
+        // Calculate statistics
+        $totalCourses = $courses->count();
+        $totalLessons = $courses->sum(function($course) {
+            return $course->lessons->count();
+        });
+        $totalEnrollments = $courses->sum(function($course) {
+            return $course->enrollments->count();
+        });
+        $totalRevenue = $courses->sum(function($course) {
+            return $course->enrollments->count() * ($course->price ?? 0);
+        });
+        
+        return view('teacherDashboard.index', compact('courses', 'totalCourses', 'totalLessons', 'totalEnrollments', 'totalRevenue'));
     }
 
     public function destroyProject(graduationProject $project)
@@ -296,5 +309,33 @@ class teacherController extends Controller
         $data = $request->except('_token');
         $project->update($data);
         return redirect()->back()->with('success', 'تم تقييم المشروع بنجاح');
+    }
+
+    /**
+     * Display all courses for the teacher
+     */
+    public function allCourses()
+    {
+        // Ensure we only get courses for the authenticated teacher
+        $teacherId = auth()->user()->id;
+        
+        $courses = Courses::with(['category', 'lessons', 'enrollments'])
+            ->where('user_id', $teacherId)
+            ->withCount(['lessons', 'enrollments'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        // Add counts to each course and ensure ownership
+        $courses->getCollection()->transform(function ($course) use ($teacherId) {
+            // Double check ownership
+            if ($course->user_id != $teacherId) {
+                return null;
+            }
+            $course->enrollments_count = $course->enrollments->count();
+            $course->lessons_count = $course->lessons->count();
+            return $course;
+        })->filter();
+
+        return view('teacherDashboard.courses.allCourses', compact('courses'));
     }
 }

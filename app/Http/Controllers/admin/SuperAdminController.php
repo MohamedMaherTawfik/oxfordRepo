@@ -42,13 +42,13 @@ class SuperAdminController extends Controller
      */
     public function users()
     {
-        $users = User::where('role', 'user')->get();
+        $users = User::where('role', 'user')->orderBy('created_at', 'desc')->get();
         return view('admin.users.index', compact('users'));
     }
 
     public function teachers()
     {
-        $teachers = User::where('role', 'teacher')->get();
+        $teachers = User::where('role', 'teacher')->orderBy('created_at', 'desc')->get();
         return view('admin.teachers.index', compact('teachers'));
     }
 
@@ -141,7 +141,7 @@ class SuperAdminController extends Controller
      */
     public function pending()
     {
-        $applies = applyTeacher::with('user')->where('status', 'pending')->get()->all();
+        $applies = applyTeacher::with('user')->where('status', 'pending')->orderBy('created_at', 'desc')->get()->all();
         foreach ($applies as $apply) {
             $apply->user = User::find($apply->user_id);
         }
@@ -188,7 +188,7 @@ class SuperAdminController extends Controller
      */
     public function accepted()
     {
-        $applies = applyTeacher::with('user')->where('status', 'accepted')->get()->all();
+        $applies = applyTeacher::with('user')->where('status', 'accepted')->orderBy('created_at', 'desc')->get()->all();
         foreach ($applies as $apply) {
             $apply->user = User::find($apply->user_id);
         }
@@ -199,7 +199,7 @@ class SuperAdminController extends Controller
      */
     public function rejected()
     {
-        $applies = applyTeacher::with('user')->where('status', 'rejected')->get()->all();
+        $applies = applyTeacher::with('user')->where('status', 'rejected')->orderBy('created_at', 'desc')->get()->all();
         foreach ($applies as $apply) {
             $apply->user = User::find($apply->user_id);
         }
@@ -211,7 +211,7 @@ class SuperAdminController extends Controller
      */
     public function allCourses()
     {
-        $courses = Courses::get();
+        $courses = Courses::orderBy('created_at', 'desc')->get();
         foreach ($courses as $course) {
             $course->cover_photo_url = $course->cover_photo && Storage::disk('public')->exists($course->cover_photo)
                 ? asset('storage/' . $course->cover_photo)
@@ -234,7 +234,7 @@ class SuperAdminController extends Controller
      */
     public function categories()
     {
-        $categories = \App\Models\categories::get();
+        $categories = \App\Models\categories::orderBy('created_at', 'desc')->get();
         return view('admin.categories.index', compact('categories'));
     }
 

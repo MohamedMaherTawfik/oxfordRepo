@@ -31,7 +31,7 @@ class adminpaymentController extends Controller
 
     public function students()
     {
-        $enrollments = Enrollments::with('user')->where('transaction_type', 'cash')->get();
+        $enrollments = Enrollments::with('user')->where('transaction_type', 'cash')->orderBy('created_at', 'desc')->get();
         return view('admin.payment.cash', compact('enrollments'));
     }
 

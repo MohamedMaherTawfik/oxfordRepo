@@ -18,7 +18,7 @@ SQLSTATE[HY000] [2002] No connection could be made because the target machine ac
    - حمّل النسخة المناسبة لنظامك (Windows)
    - ثبّت XAMPP
 
-2. **تشغيل MySQL:**
+2. **تشغيل MySQL:**ت
    - افتح **XAMPP Control Panel**
    - اضغط **Start** بجانب **MySQL**
    - يجب أن يتحول إلى اللون الأخضر

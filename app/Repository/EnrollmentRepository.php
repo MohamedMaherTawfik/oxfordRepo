@@ -22,6 +22,8 @@ class EnrollmentRepository implements EnrollmentInterface
             'user_id' => Auth::user()->id,
             'price' => $price,
             'enrolled' => 'yes',
+            'transaction_status' => 'success',
+            'transaction_type' => 'api',
         ]);
     }
 

@@ -23,7 +23,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
     @php
         use Illuminate\Support\Str;
 
@@ -74,6 +74,7 @@
                 Your browser does not support the video tag.
             </video>
         @endif
+    </div>
     </div>
 
     <!-- Footer -->

@@ -23,8 +23,8 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <div class="relative min-h-screen flex flex-col items-center justify-center p-8">
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <div class="relative flex-grow flex flex-col items-center justify-center p-8">
 
         <!-- Exit Button -->
         <form method="POST" action="{{ route('student.quiz.exit', $quiz->slug) }}"
@@ -93,6 +93,7 @@
         };
     </script>
 
+    <x-footer />
 </body>
 
 </html>

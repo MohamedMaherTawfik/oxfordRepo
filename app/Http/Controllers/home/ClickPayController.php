@@ -192,6 +192,8 @@ class ClickPayController
             'courses_id' => $course->id,
             'price' => $course->admin_price ?? $course->price,
             'enrolled' => 'yes',
+            'transaction_status' => 'success',
+            'transaction_type' => 'clickpay',
         ]);
         return view('payment.success', compact('course'));
     }
@@ -219,6 +221,7 @@ class ClickPayController
             'price' => $course->admin_price ?? $course->price,
             'enrolled' => 'yes',
             'transaction_type' => 'cash',
+            'transaction_status' => 'success',
         ]);
         return view('payment.success', compact('course'));
     }
@@ -246,6 +249,7 @@ class ClickPayController
             'price' => $course->admin_price ?? $course->price,
             'enrolled' => 'yes',
             'transaction_type' => 'cash',
+            'transaction_status' => 'success',
         ]);
         return view('payment.success', compact('course'));
     }

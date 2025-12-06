@@ -45,9 +45,9 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
-
-    <x-navbar />
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <div class="flex-grow">
+        <x-navbar />
 
 
     <div class="mt-10">.</div>
@@ -174,6 +174,7 @@
     <!-- Add CSRF Meta Tag if using Laravel -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="mt-10"></div>
+    </div>
     <x-footer />
 </body>
 

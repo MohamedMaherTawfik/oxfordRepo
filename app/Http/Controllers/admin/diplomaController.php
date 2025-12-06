@@ -12,8 +12,8 @@ class diplomaController extends Controller
 {
     public function index()
     {
-        $diplomas = Diplomas::with('categorey', 'user')->get();
-        $requests = \App\Models\RequestCertificate::all();
+        $diplomas = Diplomas::with('categorey', 'user')->orderBy('created_at', 'desc')->get();
+        $requests = \App\Models\RequestCertificate::orderBy('created_at', 'desc')->get();
         return view('admin.diplomas.index', compact('diplomas', 'requests'));
     }
 

@@ -53,9 +53,9 @@
     </style>
 </head>
 
-<body class="bg-gray-50">
-
-    <x-navbar />
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <div class="flex-grow">
+        <x-navbar />
 
     <div class="mt-10">.</div>
     <div class="mt-10">.</div>
@@ -213,6 +213,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <x-footer />
 

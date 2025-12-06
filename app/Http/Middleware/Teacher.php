@@ -16,10 +16,22 @@ class Teacher
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // dd(Auth::user());
         if (auth()->check()) {
-            if (auth()->user()->role == 'teacher' && auth()->user()->applyTeacher->status == 'accepted') {
-                return $next($request);
+            $user = auth()->user();
+            
+            // Check if user is a teacher
+            if ($user->role == 'teacher') {
+                // Check if applyTeacher exists
+                if (!$user->applyTeacher) {
+                    abort(403, 'Teacher application not found. Please contact administrator.');
+                }
+                
+                // Check if status is accepted
+                if ($user->applyTeacher->status == 'accepted') {
+                    return $next($request);
+                } else {
+                    abort(403, 'Your teacher application is ' . $user->applyTeacher->status . '. Please wait for approval.');
+                }
             }
         }
 

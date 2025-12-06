@@ -240,13 +240,14 @@
     </style>
 </head>
 
-<body class="bg-gray-50" x-data="courseFilter()" x-cloak>
-    <x-navbar />
+<body class="bg-gray-50 min-h-screen flex flex-col" x-data="courseFilter()" x-cloak>
+    <div class="flex-grow">
+        <x-navbar />
 
-    <div class="mt-10">.</div>
-    <div class="mt-10">.</div>
+        <div class="mt-10">.</div>
+        <div class="mt-10">.</div>
 
-    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
             <div class="{{ app()->getLocale() === 'ar' ? 'text-right' : 'text-center' }} mb-12">
@@ -511,6 +512,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <x-footer />
 

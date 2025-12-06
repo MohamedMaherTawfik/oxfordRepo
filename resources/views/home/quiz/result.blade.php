@@ -21,7 +21,8 @@
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center px-4 py-10">
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <div class="flex-grow flex items-center justify-center px-4 py-10">
 
     <div class="bg-white shadow-lg rounded-lg max-w-xl w-full p-8">
         <!-- Header -->
@@ -75,6 +76,7 @@
         </div>
     </div>
 
+    <x-footer />
 </body>
 
 </html>

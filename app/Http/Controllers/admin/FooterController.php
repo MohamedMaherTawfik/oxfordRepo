@@ -11,7 +11,7 @@ class FooterController extends Controller
 {
     public function footers()
     {
-        $footers = footer::all();
+        $footers = footer::orderBy('created_at', 'desc')->get();
         return view('admin.footer.index', compact('footers'));
     }
 

@@ -38,10 +38,11 @@
     </style>
 </head>
 
-<body class="bg-gray-50">
-    <x-navbar />
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <div class="flex-grow">
+        <x-navbar />
 
-    <!-- Hero Section -->
+        <!-- Hero Section -->
     <section class="category-hero py-12 text-center">
         <h1 class="text-4xl font-bold text-gray-900 mb-3">{{ $categorey->name }}</h1>
         <p class="text-gray-700 max-w-2xl mx-auto">{{ $categorey->description }}</p>
@@ -127,6 +128,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <x-footer />
 

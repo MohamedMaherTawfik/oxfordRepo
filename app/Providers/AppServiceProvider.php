@@ -30,6 +30,9 @@ use App\Interfaces\CourseInterface;
 use App\Repository\CourseRepository;
 use App\Interfaces\QuestionInterface;
 use App\Repository\QuestionRepository;
+use App\Models\Enrollments;
+use App\Observers\EnrollmentObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -59,5 +62,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         app('router')->aliasMiddleware('auth.jwt', JWTMiddleware::class);
+        Enrollments::observe(EnrollmentObserver::class);
     }
 }

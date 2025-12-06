@@ -27,9 +27,10 @@
     </style>
 </head>
 
-<body class="bg-white" x-data="courseLoader()" x-init="startLoading()" x-cloak>
-    <!-- Navigation Bar -->
-    <x-navbar />
+<body class="bg-white min-h-screen flex flex-col" x-data="courseLoader()" x-init="startLoading()" x-cloak>
+    <div class="flex-grow">
+        <!-- Navigation Bar -->
+        <x-navbar />
 
     <div class="mt-10">.</div>
     <div class="mt-10">.</div>
@@ -70,6 +71,7 @@
             </div>
         @endforeach
     </section>
+    </div>
 
     <!-- Footer -->
     <x-footer />

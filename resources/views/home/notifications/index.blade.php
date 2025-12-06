@@ -21,10 +21,10 @@
     </style>
 </head>
 
-<body class="bg-white text-gray-800">
-
-    {{-- Navbar --}}
-    <x-navbar />
+<body class="bg-white text-gray-800 min-h-screen flex flex-col">
+    <div class="flex-grow">
+        {{-- Navbar --}}
+        <x-navbar />
 
     {{-- Notifications --}}
 
@@ -51,7 +51,7 @@
         @endforelse
     </div>
     {{-- End Notifications --}}
-
+    </div>
 
     {{-- Footer --}}
     <x-footer />

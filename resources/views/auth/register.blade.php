@@ -1,7 +1,9 @@
 @php
     use App\Models\signphoto;
+    use App\Models\RegistrationVideoSetting;
     $photo = signphoto::first();
     $registerPhoto = $photo && $photo->register ? asset('storage/' . $photo->register) : asset('web/teacher.jpg');
+    $videoSetting = RegistrationVideoSetting::first();
 @endphp
 
 <!DOCTYPE html>
@@ -58,6 +60,19 @@
                         {{ __('messages.register_left_4') }}<br />
                         {{ __('messages.register_left_5') }}
                     </p>
+                    
+                    <!-- Help Video Button -->
+                    @if($videoSetting && $videoSetting->is_enabled && $videoSetting->youtube_url)
+                        <div class="mt-8 flex justify-center">
+                            <button type="button" 
+                                    onclick="openVideoModal()"
+                                    class="inline-flex items-center gap-3 px-8 py-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-white/30 hover:border-white/50">
+                                <i class="fas fa-question-circle text-xl"></i>
+                                <span class="text-lg">{{ __('messages.watch_help_video') ?? 'شاهد فيديو الشرح' }}</span>
+                                <i class="fas fa-play-circle text-xl"></i>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -73,6 +88,7 @@
                     <h2 class="text-4xl font-bold text-gray-900">{{ __('messages.register_title') }}</h2>
                     <p class="text-gray-600">{{ __('messages.create_account') ?? 'أنشئ حسابك الآن' }}</p>
                 </div>
+
 
                 <form class="space-y-5" action="{{ route('signup') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -218,6 +234,45 @@
         </div>
     </div>
 
+    <!-- Video Modal -->
+    @if($videoSetting && $videoSetting->is_enabled && $videoSetting->youtube_url)
+        <div id="videoModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] hidden items-center justify-center p-4" onclick="closeVideoModal(event)">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full relative animate-fadeIn" onclick="event.stopPropagation()">
+                <!-- Close Button -->
+                <button onclick="closeVideoModal()" 
+                        class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-all duration-200 text-3xl hover:scale-110">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+                
+                <!-- Video Container -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                            <i class="fas fa-video text-[#79131d]"></i>
+                            {{ __('messages.registration_help_video') ?? 'فيديو شرح التسجيل' }}
+                        </h3>
+                        <button onclick="closeVideoModal()" 
+                                class="md:hidden text-gray-500 hover:text-gray-700 transition">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="aspect-video rounded-xl overflow-hidden bg-gray-900 shadow-xl">
+                        <iframe 
+                            id="youtubeVideo"
+                            width="100%" 
+                            height="100%" 
+                            src="{{ $videoSetting->embed_url }}?enablejsapi=1&rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <script>
         function togglePassword(fieldId) {
             const password = document.getElementById(fieldId);
@@ -232,7 +287,70 @@
                 eyeIcon.classList.add('fa-eye');
             }
         }
+
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeVideoModal(event) {
+            if (event && event.target !== event.currentTarget) {
+                return;
+            }
+            const modal = document.getElementById('videoModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+                
+                // Stop video playback
+                const iframe = document.getElementById('youtubeVideo');
+                if (iframe) {
+                    const iframeSrc = iframe.src;
+                    iframe.src = '';
+                    iframe.src = iframeSrc;
+                }
+            }
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
     </script>
+
+    <style>
+        #videoModal {
+            backdrop-filter: blur(4px);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @media (max-width: 768px) {
+            #videoModal > div {
+                max-width: 95%;
+            }
+        }
+    </style>
 
 </body>
 

@@ -53,10 +53,10 @@
     </style>
 </head>
 
-<body class="antialiased text-gray-800 bg-gray-50">
-
-    <!-- Navbar -->
-    <x-navbar />
+<body class="antialiased text-gray-800 bg-gray-50 min-h-screen flex flex-col">
+    <div class="flex-grow">
+        <!-- Navbar -->
+        <x-navbar />
 
     <div class="mt-10">.</div>
     <div class="mt-10">.</div>
@@ -320,6 +320,7 @@
         </section>
 
     </main>
+    </div>
 
     <!-- Footer -->
     <x-footer />

@@ -11,7 +11,7 @@ class diplomaCategoreyController extends Controller
 {
     public function index()
     {
-        $diplomasCategorey = DiplomasCategorey::all();
+        $diplomasCategorey = DiplomasCategorey::orderBy('created_at', 'desc')->get();
         return view('admin.diplomaCategorey.index', compact('diplomasCategorey'));
     }
 

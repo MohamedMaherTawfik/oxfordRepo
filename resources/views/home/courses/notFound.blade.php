@@ -20,9 +20,10 @@
     </style>
 </head>
 
-<body class="">
-    {{-- navbar --}}
-    <x-navbar />
+<body class="min-h-screen flex flex-col">
+    <div class="flex-grow">
+        {{-- navbar --}}
+        <x-navbar />
 
 
     <div class="mt-10">.</div>
@@ -48,6 +49,7 @@
             class="inline-block mt-6 px-6 py-2 bg-red-500 text-white font-semibold rounded hover:bg-red-600 transition">
             {{ __('notfound.back_home') }}
         </a>
+    </div>
     </div>
 
     {{-- footer --}}

@@ -157,10 +157,11 @@
     </style>
 </head>
 
-<body class="bg-white" x-data="scheduleSelector()" data-is-auth="{{ auth()->check() ? 'true' : 'false' }}">
-    <x-navbar />
+<body class="bg-white min-h-screen flex flex-col" x-data="scheduleSelector()" data-is-auth="{{ auth()->check() ? 'true' : 'false' }}">
+    <div class="flex-grow">
+        <x-navbar />
 
-    <!-- Hero Section - Udemy Style -->
+        <!-- Hero Section - Udemy Style -->
     <section class="bg-white border-b border-gray-200 pt-24 md:pt-28">
         <div class="container mx-auto px-4 md:px-6 py-8">
             <div class="max-w-7xl mx-auto">
@@ -784,6 +785,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <x-footer />
 </body>

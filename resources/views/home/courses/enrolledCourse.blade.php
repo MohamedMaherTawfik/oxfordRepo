@@ -33,10 +33,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
-<body class="bg-gray-50 text-gray-800">
-
-    <header class="relative z-50">
-        <x-navbar />
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+    <div class="flex-grow">
+        <header class="relative z-50">
+            <x-navbar />
     </header>
 
     <!-- Course Header -->
@@ -431,6 +431,7 @@
                 </div>
             @endif
         </div>
+    </div>
     </div>
 
     {{-- footer --}}

@@ -200,6 +200,24 @@ $currentRoute = request()->route()->getName();
 
                 <div class="h-px bg-[#e4ce96]/20 my-4"></div>
 
+                <!-- Wallets Section -->
+                <a href="{{ route('admin.wallets.index') }}"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 {{ str_contains($currentRoute, 'admin.wallets') ? 'bg-[#e4ce96] shadow-lg' : 'hover:bg-[#e4ce96]/20' }}"
+                    style="{{ str_contains($currentRoute, 'admin.wallets') ? 'color: #79131d;' : 'color: #e4ce96;' }}">
+                    <i class="fas fa-wallet text-lg {{ str_contains($currentRoute, 'admin.wallets') ? '' : 'text-[#e4ce96]' }}"></i>
+                    <span class="font-semibold">{{ __('main.wallets') }}</span>
+                </a>
+
+                <!-- Teacher Support Section -->
+                <a href="{{ route('admin.teacher-support.index') }}"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 {{ str_contains($currentRoute, 'admin.teacher-support') ? 'bg-[#e4ce96] shadow-lg' : 'hover:bg-[#e4ce96]/20' }}"
+                    style="{{ str_contains($currentRoute, 'admin.teacher-support') ? 'color: #79131d;' : 'color: #e4ce96;' }}">
+                    <i class="fas fa-life-ring text-lg {{ str_contains($currentRoute, 'admin.teacher-support') ? '' : 'text-[#e4ce96]' }}"></i>
+                    <span class="font-semibold">{{ __('main.teacher_support_requests') }}</span>
+                </a>
+
+                <div class="h-px bg-[#e4ce96]/20 my-4"></div>
+
                 <!-- Settings Section -->
                 <div class="space-y-1">
                     <button @click="toggleSection('settings')"
@@ -230,6 +248,12 @@ $currentRoute = request()->route()->getName();
                             style="color: #e4ce96;">
                             <i class="fas fa-credit-card text-sm"></i>
                             <span>{{ __('main.payment') }}</span>
+                        </a>
+                        <a href="{{ route('admin.registration-video.index') }}"
+                            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 {{ str_contains($currentRoute, 'admin.registration-video') ? 'bg-[#e4ce96]/30' : 'hover:bg-[#e4ce96]/15' }}"
+                            style="color: #e4ce96;">
+                            <i class="fas fa-video text-sm"></i>
+                            <span>{{ __('main.registration_video_settings') }}</span>
                         </a>
                     </div>
                 </div>

@@ -165,4 +165,20 @@ class User extends Authenticatable implements JWTSubject
 
         return false;
     }
+
+    /**
+     * Get the wallet for the user.
+     */
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    /**
+     * Get withdrawal requests for the user.
+     */
+    public function withdrawalRequests()
+    {
+        return $this->hasMany(WithdrawalRequest::class);
+    }
 }

@@ -12,8 +12,8 @@ class diplomaRequestsController extends Controller
 {
     public function requests(Diplomas $diploma)
     {
-        $requests = $diploma->requests;
-        $send = sendCertificates::where('diplomas_id', $diploma->id)->get();
+        $requests = $diploma->requests()->orderBy('created_at', 'desc')->get();
+        $send = sendCertificates::where('diplomas_id', $diploma->id)->orderBy('created_at', 'desc')->get();
         return view('admin.diplomas.requests', compact('requests', 'diploma', 'send'));
     }
 

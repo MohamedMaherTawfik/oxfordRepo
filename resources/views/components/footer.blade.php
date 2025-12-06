@@ -172,8 +172,27 @@ if (!$footer) {
         opacity: 1;
         transform: translateY(0);
     }
+
+    /* Sticky Footer */
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    footer {
+        margin-top: auto;
+    }
 </style>
-<footer class="gradient-bg py-10 px-4 text-[#e4ce96]" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<footer class="gradient-bg py-10 px-4 text-[#e4ce96] mt-auto" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
         <!-- Quick Links -->

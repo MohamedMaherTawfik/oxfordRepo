@@ -35,9 +35,32 @@ class CourseScheduleController extends Controller
      */
     public function store(Request $request, Courses $course)
     {
-        $data = $request->except('_token');
+        $validated = $request->validate([
+            'day' => 'required|string|in:saturday,sunday,monday,tuesday,wednesday,thursday',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
+        ], [
+            'day.required' => __('teacher.day') . ' ' . __('teacher.is_required'),
+            'start_time.required' => __('teacher.start_time') . ' ' . __('teacher.is_required'),
+            'end_time.required' => __('teacher.end_time') . ' ' . __('teacher.is_required'),
+            'end_time.after' => __('teacher.end_time_must_be_after_start'),
+        ]);
+
+        // Check minimum duration (30 minutes)
+        $start = \Carbon\Carbon::parse($validated['start_time']);
+        $end = \Carbon\Carbon::parse($validated['end_time']);
+        $durationMinutes = $end->diffInMinutes($start);
+
+        if ($durationMinutes < 30) {
+            return redirect()->back()
+                ->withErrors(['end_time' => __('teacher.minimum_duration_30_minutes')])
+                ->withInput();
+        }
+
+        $data = $validated;
         $data['courses_id'] = $course->id;
         CourseSchedule::create($data);
+        
         return redirect()->route('course-schedules.index', $course)->with('success', 'Schedule created successfully!');
     }
 

@@ -111,8 +111,9 @@
     </style>
 </head>
 
-<body class="font-cairo bg-light text-dark text-[14px]">
-    <x-navbar />
+<body class="font-cairo bg-light text-dark text-[14px] min-h-screen flex flex-col">
+    <div class="flex-grow">
+        <x-navbar />
 
     <div class="mt-8"></div>
 
@@ -232,6 +233,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <x-footer />
 

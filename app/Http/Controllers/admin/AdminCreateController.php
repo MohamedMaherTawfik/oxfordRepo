@@ -52,7 +52,7 @@ class AdminCreateController extends Controller
 
     public function allCourses()
     {
-        $courses = Courses::get();
+        $courses = Courses::orderBy('created_at', 'desc')->get();
         return view('adminCourse.courses.allCourses', compact('courses'));
     }
 
@@ -318,7 +318,7 @@ class AdminCreateController extends Controller
 
     public function myCourses()
     {
-        $courses = Courses::where('user_id', auth()->id())->get();
+        $courses = Courses::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
         return view('adminCourse.courses.myCourses', compact('courses'));
     }
 }

@@ -17,6 +17,7 @@ class StaffController extends Controller
     {
         $staff = User::where('role', 'staff')
             ->with('staffPermissions')
+            ->orderBy('created_at', 'desc')
             ->get();
         
         return view('admin.staff.index', compact('staff'));
