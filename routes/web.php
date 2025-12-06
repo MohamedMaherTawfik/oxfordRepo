@@ -170,14 +170,14 @@ Route::group([
         Route::post('/admin/footers/edit', 'updateFooter')->name('admin.footers.update');
 
         // Registration Video Settings
-        Route::get('/admin/registration-video', [\App\Http\Controllers\Admin\RegistrationVideoController::class, 'index'])->name('admin.registration-video.index');
-        Route::put('/admin/registration-video', [\App\Http\Controllers\Admin\RegistrationVideoController::class, 'update'])->name('admin.registration-video.update');
+        Route::get('/admin/registration-video', [\App\Http\Controllers\admin\RegistrationVideoController::class, 'index'])->name('admin.registration-video.index');
+        Route::put('/admin/registration-video', [\App\Http\Controllers\admin\RegistrationVideoController::class, 'update'])->name('admin.registration-video.update');
 
         // Teacher Support Messages
-        Route::get('/admin/teacher-support', [\App\Http\Controllers\Admin\TeacherSupportController::class, 'index'])->name('admin.teacher-support.index');
-        Route::get('/admin/teacher-support/{message}', [\App\Http\Controllers\Admin\TeacherSupportController::class, 'show'])->name('admin.teacher-support.show');
-        Route::post('/admin/teacher-support/{message}/reply', [\App\Http\Controllers\Admin\TeacherSupportController::class, 'reply'])->name('admin.teacher-support.reply');
-        Route::post('/admin/teacher-support/{message}/mark-as-read', [\App\Http\Controllers\Admin\TeacherSupportController::class, 'markAsRead'])->name('admin.teacher-support.markAsRead');
+        Route::get('/admin/teacher-support', [\App\Http\Controllers\admin\TeacherSupportController::class, 'index'])->name('admin.teacher-support.index');
+        Route::get('/admin/teacher-support/{message}', [\App\Http\Controllers\admin\TeacherSupportController::class, 'show'])->name('admin.teacher-support.show');
+        Route::post('/admin/teacher-support/{message}/reply', [\App\Http\Controllers\admin\TeacherSupportController::class, 'reply'])->name('admin.teacher-support.reply');
+        Route::post('/admin/teacher-support/{message}/mark-as-read', [\App\Http\Controllers\admin\TeacherSupportController::class, 'markAsRead'])->name('admin.teacher-support.markAsRead');
     });
 });
 
@@ -344,8 +344,8 @@ Route::group([
         Route::post('/dashboard/wallet/withdrawal', [\App\Http\Controllers\teacher\WalletController::class, 'requestWithdrawal'])->name('teacher.wallet.requestWithdrawal');
 
         // Support Routes
-        Route::get('/dashboard/support', [\App\Http\Controllers\Teacher\SupportController::class, 'index'])->name('teacher.support.index');
-        Route::post('/dashboard/support', [\App\Http\Controllers\Teacher\SupportController::class, 'store'])->name('teacher.support.store');
+        Route::get('/dashboard/support', [\App\Http\Controllers\teacher\SupportController::class, 'index'])->name('teacher.support.index');
+        Route::post('/dashboard/support', [\App\Http\Controllers\teacher\SupportController::class, 'store'])->name('teacher.support.store');
         Route::get('/course-schedules/create/{course}/{day}/teacher', [CourseScheduleController::class, 'create'])->name('course-schedules.create');
         Route::post('/course-schedules/create/{course}/teacher', [CourseScheduleController::class, 'store'])->name('course-schedules.store');
         Route::delete('/course-schedules/{courseSchedule}/delete/teacher', [CourseScheduleController::class, 'destroy'])->name('course-schedules.destroy');
