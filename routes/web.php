@@ -340,8 +340,8 @@ Route::group([
         Route::get('/course-schedules/{course}/{day}/{time}/students/acess/go/teacher', [CourseScheduleController::class, 'students'])->name('course-schedules.students');
 
         // Wallet Routes
-        Route::get('/dashboard/wallet', [\App\Http\Controllers\Teacher\WalletController::class, 'index'])->name('teacher.wallet.index');
-        Route::post('/dashboard/wallet/withdrawal', [\App\Http\Controllers\Teacher\WalletController::class, 'requestWithdrawal'])->name('teacher.wallet.requestWithdrawal');
+        Route::get('/dashboard/wallet', [\App\Http\Controllers\teacher\WalletController::class, 'index'])->name('teacher.wallet.index');
+        Route::post('/dashboard/wallet/withdrawal', [\App\Http\Controllers\teacher\WalletController::class, 'requestWithdrawal'])->name('teacher.wallet.requestWithdrawal');
 
         // Support Routes
         Route::get('/dashboard/support', [\App\Http\Controllers\Teacher\SupportController::class, 'index'])->name('teacher.support.index');
