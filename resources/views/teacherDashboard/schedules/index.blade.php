@@ -74,7 +74,7 @@
                                         {{ __('teacher.add_time') }}
                                     </a>
 
-                                    {{-- زرار حذف اليوم --}}
+                                    {{-- زرار حذف اليوم
                                     @if ($hasSchedule)
                                         <form action="{{ route('course-schedules.destroy', [$course, $key]) }}"
                                             method="POST">
@@ -86,7 +86,7 @@
                                                 {{ __('teacher.delete_time') }}
                                             </button>
                                         </form>
-                                    @endif
+                                    @endif --}}
                                 </td>
 
                             </tr>
