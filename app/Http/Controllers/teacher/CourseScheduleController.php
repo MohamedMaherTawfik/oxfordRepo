@@ -49,8 +49,7 @@ class CourseScheduleController extends Controller
         // Check minimum duration (30 minutes)
         $start = \Carbon\Carbon::parse($validated['start_time']);
         $end = \Carbon\Carbon::parse($validated['end_time']);
-        $durationMinutes = $end->diffInMinutes($start);
-
+        $durationMinutes = $start->diffInMinutes($end);
         if ($durationMinutes < 30) {
             return redirect()->back()
                 ->withErrors(['end_time' => __('teacher.minimum_duration_30_minutes')])
@@ -60,7 +59,7 @@ class CourseScheduleController extends Controller
         $data = $validated;
         $data['courses_id'] = $course->id;
         CourseSchedule::create($data);
-        
+
         return redirect()->route('course-schedules.index', $course)->with('success', 'Schedule created successfully!');
     }
 
