@@ -181,7 +181,7 @@ $recentCourses = Courses::orderBy('created_at', 'desc')->take(5)->get();
                             <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-4 py-3 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <img src="{{ $user->photo ? asset('uploads/' . $user->photo) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=79131d&color=fff' }}"
+                                        <img src="{{ $user->photo ? asset('storage/' . $user->photo) : 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=79131d&color=fff' }}"
                                             alt="{{ $user->name }}" class="w-8 h-8 rounded-full mr-3">
                                         <span class="text-sm font-medium text-gray-900">{{ $user->name }}</span>
                                     </div>
