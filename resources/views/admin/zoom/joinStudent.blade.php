@@ -127,7 +127,7 @@
                             setStatus('Joining meeting...');
                             window.ZoomMtg.join({
                                 meetingNumber,
-                                userName: '{{ Auth::guard('api')->user()->name }}',
+                                userName: 'student',
                                 signature,
                                 passWord: password || '',
                                 userEmail: '',
