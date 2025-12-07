@@ -91,7 +91,7 @@ return [
     'no_courses_found' => 'No courses found',
     'courses' => 'Courses',
     'my_diploma' => 'My Diploma',
-
+    'course' => 'Course',
     'stats_teachers' => 'teachers',
     'stats_students' => 'students',
     'stats_countries' => 'Countries Served',
