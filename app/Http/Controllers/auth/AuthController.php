@@ -46,6 +46,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             if (Auth::user()->role == 'admin') {
+                request()->session()->regenerate();
                 return redirect('/admin');
             } elseif (Auth::user()->role == 'teacher') {
                 request()->session()->regenerate();
@@ -82,10 +83,6 @@ class AuthController extends Controller
         return view('auth.teacherApplied');
     }
 
-    // public function resetPage()
-    // {
-
-    // }
 
     public function updatePassword(Request $request)
     {

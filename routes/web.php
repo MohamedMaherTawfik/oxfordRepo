@@ -31,11 +31,11 @@ use App\Http\Middleware\CheckAdmin;
 
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/register', 'signUp')->name('register');
+    Route::get('/register', 'signUp')->name('register')->middleware(['guest', 'throttle:3,1']);
     Route::post('/register', 'register')->name('signup');
     Route::get('/teacher', 'teacherRegister')->name('teacher');
     Route::post('/teacher', 'teacher')->name('teacher');
-    Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'login')->name('login')->middleware(['guest', 'throttle:3,1']);
     Route::post('/login', 'signin')->name('signin');
     Route::post('/logout', 'logout')->name('logout');
     Route::get('/reset-password', 'resetPage')->name('reset.password')->middleware('auth');
@@ -49,7 +49,9 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('lang.switch');
 
-Route::group([], function () {
+Route::group([
+    'middleware' => ['auth', 'throttle:10,1']
+], function () {
     Route::get('/', [homeController::class, 'index'])->name('home');
     Route::get('/profile', [homeController::class, 'profile'])->name('profile')->middleware('auth');
     Route::post('/profile', [homeController::class, 'settingUpdate'])->name('settings.update')->middleware('auth');
@@ -150,7 +152,6 @@ Route::group([
 
     });
 
-    // Wallet Routes
     Route::controller(WalletController::class)->group(function () {
         Route::get('/admin/wallets', 'index')->name('admin.wallets.index');
         Route::get('/admin/wallets/{userId}', 'show')->name('admin.wallets.show');
@@ -169,11 +170,9 @@ Route::group([
         Route::get('/admin/footers/edit', 'editFooter')->name('admin.footers.edit');
         Route::post('/admin/footers/edit', 'updateFooter')->name('admin.footers.update');
 
-        // Registration Video Settings
         Route::get('/admin/registration-video', [\App\Http\Controllers\admin\RegistrationVideoController::class, 'index'])->name('admin.registration-video.index');
         Route::put('/admin/registration-video', [\App\Http\Controllers\admin\RegistrationVideoController::class, 'update'])->name('admin.registration-video.update');
 
-        // Teacher Support Messages
         Route::get('/admin/teacher-support', [\App\Http\Controllers\admin\TeacherSupportController::class, 'index'])->name('admin.teacher-support.index');
         Route::get('/admin/teacher-support/{message}', [\App\Http\Controllers\admin\TeacherSupportController::class, 'show'])->name('admin.teacher-support.show');
         Route::post('/admin/teacher-support/{message}/reply', [\App\Http\Controllers\admin\TeacherSupportController::class, 'reply'])->name('admin.teacher-support.reply');

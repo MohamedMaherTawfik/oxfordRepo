@@ -12,7 +12,6 @@ use App\Http\Controllers\api\student\commentController;
 use App\Http\Controllers\api\student\CourseController;
 use App\Http\Controllers\api\student\enrollmentController;
 use App\Http\Controllers\api\student\lessonController;
-use App\Http\Controllers\ChatController;
 use App\Http\Controllers\home\notificationCotroller;
 use App\Http\Controllers\home\zoomController;
 use App\Http\Middleware\api\ownComment;
@@ -24,9 +23,9 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function () {
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register'])->middleware(['throttle:3,1', 'guest']);
     Route::post('/verify-register', [AuthController::class, 'verifyOtpAfterRegister']);
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->middleware(['throttle:3,1', 'guest']);
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('jwt.auth');
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/profile', [AuthController::class, 'profile'])->middleware('jwt.auth');
@@ -35,7 +34,7 @@ Route::group([
     Route::post('/forgot-password', [AuthController::class, 'sendOtp']);
     Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
     Route::post('/new-password', [AuthController::class, 'foregetPass']);
-    Route::post('/send-notify', [AuthController::class, 'sendNotify']);
+    Route::post('/send-notify', [AuthController::class, 'sendNotify'])->middleware(['throttle:3,1', 'guest']);
     Route::get('/my-notifications', [notificationCotroller::class, 'myNotifications']);
 });
 
@@ -43,7 +42,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'categorey'
 ], function () {
-    Route::controller(categoreyController::class)->group(
+    Route::middleware(['throttle:10,1'])->controller(categoreyController::class)->group(
         function () {
             Route::get('/all', 'allCategories');
             Route::get('/detail/{id}', 'singleCategorey');
@@ -59,7 +58,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'course',
 ], function () {
-    Route::controller(CourseController::class)->group(
+    Route::middleware(['throttle:10,1'])->controller(CourseController::class)->group(
         function () {
             Route::get('/all', 'allCourses');
             Route::get('/detail/{id}', 'courseDetail')->middleware(authcheck::class);
@@ -78,7 +77,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'lesson',
 ], function () {
-    Route::controller(lessonController::class)->group(
+    Route::middleware(['throttle:10,1'])->controller(lessonController::class)->group(
         function () {
             Route::get('/all/{id}', 'allLessons');
             Route::get('/detail/{id}', 'lessonDetails');
@@ -93,7 +92,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'comment',
 ], function () {
-    Route::controller(commentController::class)->group(
+    Route::middleware(['throttle:10,1'])->controller(commentController::class)->group(
         function () {
             Route::post('/add/{lessonId}', 'addComment')->middleware('jwt.auth');
             Route::get('/all/{lessonId}', 'allComments');
@@ -107,7 +106,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'enrollment',
 ], function () {
-    Route::controller(enrollmentController::class)->group(
+    Route::middleware(['throttle:5,1'])->controller(enrollmentController::class)->group(
         function () {
             Route::get('/all/{courseId}', 'allEnrollments');
             Route::get('/diploma/{id}', 'allDiplomas');
